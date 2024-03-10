@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../../components/NavBar/NavBar";
 import { useNavigate, useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import { getSystemById } from "../../redux/actions";
@@ -96,7 +95,6 @@ export default function SystemDetail() {
 
   return (
     <div className="container">
-      <NavBar />
       <h1>
         {systemDetails.data &&
           systemDetails.data.attributes &&

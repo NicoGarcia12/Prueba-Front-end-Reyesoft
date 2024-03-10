@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import NavBar from "../../components/NavBar/NavBar";
 import { getSystems } from "../../redux/actions";
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Systems.module.css";
@@ -22,7 +21,6 @@ export default function Systems() {
 
   return systems.length > 0 ? (
     <div>
-      <NavBar />
       <h1>Sistemas de cambio activos</h1>
       <h2>Elija el sistema con el que quiera enviar dinero</h2>
       <div className={styles["systems"]}>
