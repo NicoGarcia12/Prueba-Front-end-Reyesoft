@@ -49,8 +49,15 @@ export default function SystemDetail() {
   }, [dispatch, id]);
 
   useEffect(() => {
+    // Verificar si numberChange es menor o igual a 0
+    if (parseFloat(numberChange) <= 0) {
+      // Establecer systemChange como un array vacío y salir del efecto
+      setSystemChange([]);
+      return;
+    }
+  
     if (!systemDetails.rates || !currencies || !systems) return;
-
+  
     let systemCurrency = systems.filter(
       (system) => system.attributes.currency === selectedCurrency
     );
@@ -76,7 +83,8 @@ export default function SystemDetail() {
       }))
       .filter((system) => system.price !== null);
     setSystemChange(updatedSystemChange);
-  }, [systemDetails, currencies, systems, selectedCurrency]);
+  }, [systemDetails, currencies, systems, selectedCurrency, numberChange]);
+  
 
   const getRates = (event) => {
     const { value } = event.target;
@@ -97,7 +105,7 @@ export default function SystemDetail() {
   return (
     <div className="container">
       <NavBar />
-      <h1>{systemDetails.data && systemDetails.data.attributes.name}</h1>
+      <h1>{systemDetails.data && systemDetails.data.attributes && systemDetails.data.attributes.name}</h1>
       <div className={styles["system-detail-container"]}>
         {!loading ? (
           <>
