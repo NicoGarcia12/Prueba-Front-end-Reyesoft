@@ -47,10 +47,10 @@ export default function Login() {
     } else {
       dispatch(loginUser(user))
         .then((response) => {
-          const expirationMinutes = 30;
+          const expirationHours = 24;
           const expirationDate = new Date();
           expirationDate.setTime(
-            expirationDate.getTime() + expirationMinutes * 60 * 1000
+            expirationDate.getTime() + expirationHours* 60 * 60 * 1000
           );
           Cookies.set("usuario", response, { expires: expirationDate });
           navigate(`/systems`);
