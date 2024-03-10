@@ -2,7 +2,6 @@ export default function validation(data) {
   let errors = {};
 
   function isValidEmail(email) {
-    // Utilizo una expresión regular para validar el formato del email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
   }
