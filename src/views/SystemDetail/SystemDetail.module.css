@@ -9,7 +9,11 @@
 .container-change {
   width: 100%;
   text-align: center;
-  border: 0.5px solid black;
+  padding: 0 20px;
+}
+
+.container-information p {
+  text-align: justify;
 }
 
 .currency-radio {
@@ -39,4 +43,3 @@
 .systemChange img {
   margin-right: 25px;
 }
-
