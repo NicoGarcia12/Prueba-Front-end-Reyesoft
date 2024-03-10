@@ -1,0 +1,13 @@
+.system-detail-container {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .container-information {
+    flex: 1;
+  }
+  
+  .container-change {
+    flex: 1;
+  }
+  

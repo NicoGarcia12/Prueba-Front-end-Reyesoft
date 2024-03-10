@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validation from "../../utils/validationForm";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,14 @@ import Cookies from "js-cookie"; // Importar js-cookie
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
+  useEffect(() => {
+    const usuarioCookie = Cookies.get("usuario");
+    if (usuarioCookie === "John Doe") {
+      navigate("/systems");
+    }
+  }, [navigate]);
+
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -44,7 +51,6 @@ export default function Login() {
           expirationDate.setTime(
             expirationDate.getTime() + expirationMinutes * 60 * 1000
           );
-          console.log(response);
           Cookies.set("usuario", response, { expires: expirationDate });
           navigate(`/systems`);
         })
