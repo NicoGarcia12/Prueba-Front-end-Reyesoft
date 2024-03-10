@@ -1,0 +1,42 @@
+.system-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh; /* Asegura que el contenedor ocupe el 100% del viewport */
+  justify-content: center; /* Centra horizontalmente el contenido */
+}
+
+.container-information,
+.container-change {
+  padding: 20px; /* Agrega espaciado alrededor del contenido */
+  width: 100%; /* Ocupa todo el espacio disponible */
+  text-align: center; /* Centra el contenido horizontalmente */
+}
+
+
+.currency-radio {
+  display: inline-flex;
+  align-items: center;
+}
+
+.currency-radio input[type="radio"] {
+  margin-right: 8px;
+}
+
+.error-message {
+  display: block;
+  color: red;
+  margin-top: 10px;
+}
+
+.systemChange {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Centra verticalmente el contenido */
+  align-items: center; /* Centra horizontalmente el contenido */
+}
+
+.systemChange img{
+  margin-right: 25px;
+}
+
+

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import NavBar from "../../components/NavBar/NavBar";
 import { getSystems } from "../../redux/actions";
 import { NavLink, useNavigate } from "react-router-dom";
-import "./Systems.css";
+import styles from "./Systems.module.css";
 import Cookies from "js-cookie";
 
 export default function Systems() {
@@ -24,11 +24,11 @@ export default function Systems() {
     <div>
       <NavBar />
       <h1>Sistemas de cambio activos</h1>
-      <h3>Elija el sistema con el que quiera enviar</h3>
-      <div className="systems">
-        <div className="systems-container">
+      <h2>Elija el sistema con el que quiera enviar dinero</h2>
+      <div className={styles["systems"]}>
+        <div className={styles["systems-container"]}>
           {systems.map((system) => (
-            <div key={system.id} className="system">
+            <div key={system.id} className={styles["system"]}>
               <NavLink to={`/systems/${system.id}`}>
                 <img src={system.urlImage} alt={system.attributes.name} />
               </NavLink>
