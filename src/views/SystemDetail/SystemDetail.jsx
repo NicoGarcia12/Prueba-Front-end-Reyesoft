@@ -49,15 +49,8 @@ export default function SystemDetail() {
   }, [dispatch, id]);
 
   useEffect(() => {
-    // Verificar si numberChange es menor o igual a 0
-    if (parseFloat(numberChange) <= 0) {
-      // Establecer systemChange como un array vacío y salir del efecto
-      setSystemChange([]);
-      return;
-    }
-  
     if (!systemDetails.rates || !currencies || !systems) return;
-  
+
     let systemCurrency = systems.filter(
       (system) => system.attributes.currency === selectedCurrency
     );
@@ -83,8 +76,7 @@ export default function SystemDetail() {
       }))
       .filter((system) => system.price !== null);
     setSystemChange(updatedSystemChange);
-  }, [systemDetails, currencies, systems, selectedCurrency, numberChange]);
-  
+  }, [systemDetails, currencies, systems, selectedCurrency]);
 
   const getRates = (event) => {
     const { value } = event.target;
@@ -105,7 +97,11 @@ export default function SystemDetail() {
   return (
     <div className="container">
       <NavBar />
-      <h1>{systemDetails.data && systemDetails.data.attributes && systemDetails.data.attributes.name}</h1>
+      <h1>
+        {systemDetails.data &&
+          systemDetails.data.attributes &&
+          systemDetails.data.attributes.name}
+      </h1>
       <div className={styles["system-detail-container"]}>
         {!loading ? (
           <>
@@ -160,15 +156,21 @@ export default function SystemDetail() {
                       <div className={styles["systemChange"]}>
                         <img src={system.urlImage} alt={system.name} />
                         <span>
-                          Recibirás aproximadamente {calculatedPrice}{" "}
-                          {selectedCurrency}
+                          {isNaN(numberChange) || numberChange <= 0
+                            ? "No puede calcularse, ponga un número válido"
+                            : calculatedPrice >= 0.01
+                            ? `Recibirás aproximadamente ${calculatedPrice}
+                            ${selectedCurrency}`
+                            : `Menos de 0.01 ${selectedCurrency}`}
                         </span>
                       </div>
                     );
                   })}
                 </>
               ) : (
-                <span>No hay tasas de cambio disponibles con esta moneda</span>
+                <div className={styles["systemChange"]}>
+                  <h3>No hay tasas de cambio disponibles con esta moneda</h3>
+                </div>
               )}
             </div>
           </>
